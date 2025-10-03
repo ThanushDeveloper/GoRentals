@@ -1,0 +1,203 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GoRentals – Rent your dream ride</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <i class="fa-solid fa-car-side"></i>
+        GoRentals
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample" aria-controls="navbarsExample" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExample">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="vehicles.html">Vehicles</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+        <div class="ms-lg-3 d-flex gap-2">
+          <a href="login.html" class="btn btn-outline-primary">Login</a>
+          <a href="register.html" class="btn btn-accent">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero" style="background-image:url('https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1600&auto=format&fit=crop');">
+    <div class="container hero-content py-5">
+      <h1 class="display-4 fw-bold">Rent your dream ride</h1>
+      <p class="lead mb-4">Premium cars and bikes. Flexible pricing. 100% hassle-free experience.</p>
+      <div class="d-flex gap-3 justify-content-center">
+        <a href="vehicles.html" class="btn btn-primary btn-lg"><i class="fa-solid fa-magnifying-glass me-2"></i>Browse Vehicles</a>
+        <a href="booking.html" class="btn btn-accent btn-lg"><i class="fa-regular fa-calendar me-2"></i>Quick Book</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Categories -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">Find the perfect fit</h2>
+        <p class="section-lead mx-auto">From city zippers to luxury cruisers, choose from our curated fleet of cars and bikes.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card card-hover h-100 overflow-hidden">
+            <div class="row g-0 h-100 align-items-center">
+              <div class="col-md-6">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop" class="img-fluid h-100 w-100 object-fit-cover" alt="Cars">
+              </div>
+              <div class="col-md-6 p-4">
+                <h3 class="h4">Cars</h3>
+                <p>Comfort, performance, and style for every occasion.</p>
+                <a href="vehicles.html?type=cars" class="btn btn-primary">Explore Cars</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-hover h-100 overflow-hidden">
+            <div class="row g-0 h-100 align-items-center flex-md-row-reverse">
+              <div class="col-md-6">
+                <img src="https://images.unsplash.com/photo-1493238792000-8113da705763?q=80&w=1200&auto=format&fit=crop" class="img-fluid h-100 w-100 object-fit-cover" alt="Bikes">
+              </div>
+              <div class="col-md-6 p-4">
+                <h3 class="h4">Bikes</h3>
+                <p>Beat the traffic with agile and economical rides.</p>
+                <a href="vehicles.html?type=bikes" class="btn btn-primary">Explore Bikes</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Why choose GoRentals?</h2>
+        <p class="section-lead mx-auto">We obsess over convenience, reliability, and value so you can just enjoy the ride.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-6 col-lg-3 text-center">
+          <div class="feature-icon mx-auto mb-3"><i class="fa-solid fa-shield-halved"></i></div>
+          <h6>Insurance Included</h6>
+          <p class="text-muted small">Drive with peace of mind, always covered.</p>
+        </div>
+        <div class="col-6 col-lg-3 text-center">
+          <div class="feature-icon mx-auto mb-3"><i class="fa-solid fa-car"></i></div>
+          <h6>Top-notch Fleet</h6>
+          <p class="text-muted small">Regularly maintained and sanitized vehicles.</p>
+        </div>
+        <div class="col-6 col-lg-3 text-center">
+          <div class="feature-icon mx-auto mb-3"><i class="fa-solid fa-headset"></i></div>
+          <h6>24/7 Support</h6>
+          <p class="text-muted small">We’re here whenever you need us.</p>
+        </div>
+        <div class="col-6 col-lg-3 text-center">
+          <div class="feature-icon mx-auto mb-3"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+          <h6>Transparent Pricing</h6>
+          <p class="text-muted small">No hidden fees. Ever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">Loved by customers</h2>
+        <p class="section-lead mx-auto">Real stories from real trips.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="testimonial h-100">
+            <div class="d-flex align-items-center gap-3 mb-2">
+              <img src="https://randomuser.me/api/portraits/women/65.jpg" class="rounded-circle" width="48" height="48" alt="">
+              <div>
+                <strong>Priya Sharma</strong>
+                <div class="text-muted small">Mumbai</div>
+              </div>
+            </div>
+            <p class="mb-0">“Flawless experience! Booked in minutes and the car was spotless.”</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial h-100">
+            <div class="d-flex align-items-center gap-3 mb-2">
+              <img src="https://randomuser.me/api/portraits/men/22.jpg" class="rounded-circle" width="48" height="48" alt="">
+              <div>
+                <strong>Arjun Mehta</strong>
+                <div class="text-muted small">Bengaluru</div>
+              </div>
+            </div>
+            <p class="mb-0">“The bike was perfect for city commutes. Great support team!”</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial h-100">
+            <div class="d-flex align-items-center gap-3 mb-2">
+              <img src="https://randomuser.me/api/portraits/women/12.jpg" class="rounded-circle" width="48" height="48" alt="">
+              <div>
+                <strong>Sneha Patel</strong>
+                <div class="text-muted small">Pune</div>
+              </div>
+            </div>
+            <p class="mb-0">“Affordable pricing and a seamless booking flow. Highly recommended!”</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer py-5 mt-5">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-md">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <i class="fa-solid fa-car-side"></i>
+            <strong>GoRentals</strong>
+          </div>
+          <div class="small text-secondary">Drive more. Worry less.</div>
+        </div>
+        <div class="col-md-auto">
+          <div class="d-flex gap-3 fs-5">
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="border-secondary my-4">
+      <div class="small text-center text-secondary">© <span id="year"></span> GoRentals. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

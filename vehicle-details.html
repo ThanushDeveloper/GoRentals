@@ -1,0 +1,115 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vehicle Details – GoRentals</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><i class="fa-solid fa-car-side"></i>GoRentals</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample" aria-controls="navbarsExample" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExample">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="vehicles.html">Vehicles</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+        <div class="ms-lg-3 d-flex gap-2">
+          <a href="login.html" class="btn btn-outline-primary">Login</a>
+          <a href="register.html" class="btn btn-accent">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="card shadow-soft p-3 rounded-12">
+            <img id="mainImage" src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1600&auto=format&fit=crop" class="img-fluid rounded-12 mb-3" alt="Vehicle">
+            <div class="row g-2">
+              <div class="col-3"><img class="img-fluid gallery-thumb active" src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=800&auto=format&fit=crop" alt="thumb 1"></div>
+              <div class="col-3"><img class="img-fluid gallery-thumb" src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?q=80&w=800&auto=format&fit=crop" alt="thumb 2"></div>
+              <div class="col-3"><img class="img-fluid gallery-thumb" src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=800&auto=format&fit=crop" alt="thumb 3"></div>
+              <div class="col-3"><img class="img-fluid gallery-thumb" src="https://images.unsplash.com/photo-1549921296-3fd62c54f2e0?q=80&w=800&auto=format&fit=crop" alt="thumb 4"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="card shadow-soft p-4 rounded-12">
+            <h1 class="h3">Sedan LX 2023</h1>
+            <div class="mb-3">
+              <span class="badge bg-primary">Automatic</span>
+              <span class="badge bg-secondary">Petrol</span>
+              <span class="badge badge-accent">5 seats</span>
+            </div>
+            <ul class="list-unstyled text-muted">
+              <li class="mb-1"><i class="fa-solid fa-gauge-high me-2 text-primary"></i>Mileage: 18 km/l</li>
+              <li class="mb-1"><i class="fa-solid fa-snowflake me-2 text-primary"></i>AC, Cruise Control, Airbags</li>
+              <li class="mb-1"><i class="fa-solid fa-location-dot me-2 text-primary"></i>Free home delivery in city limits</li>
+            </ul>
+            <div class="d-flex align-items-center justify-content-between mt-3">
+              <div class="display-6 fw-bold text-primary">₹2,999<span class="fs-6 fw-medium text-muted">/day</span></div>
+              <button id="bookThisButton" class="btn btn-accent" data-vehicle="Sedan LX">Book This Vehicle</button>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h5>Description</h5>
+            <p class="text-muted">Experience comfort and performance with the Sedan LX. Ideal for city drives and weekend getaways, featuring top safety and convenience tech.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer py-5 mt-5">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-md">
+          <div class="d-flex align-items-center gap-2 mb-2"><i class="fa-solid fa-car-side"></i><strong>GoRentals</strong></div>
+          <div class="small text-secondary">Drive more. Worry less.</div>
+        </div>
+        <div class="col-md-auto">
+          <div class="d-flex gap-3 fs-5">
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="border-secondary my-4">
+      <div class="small text-center text-secondary">© <span id="year"></span> GoRentals. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('.gallery-thumb').forEach(function(img){
+      img.addEventListener('click', function(){
+        document.getElementById('mainImage').src = img.src.replace('w=800','w=1600');
+        document.querySelectorAll('.gallery-thumb').forEach(t=>t.classList.remove('active'));
+        img.classList.add('active');
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
