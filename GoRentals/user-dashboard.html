@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Dashboard – GoRentals</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><i class="fa-solid fa-car-side"></i>GoRentals</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample" aria-controls="navbarsExample" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExample">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="vehicles.html">Vehicles</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+        <div class="ms-lg-3 d-flex gap-2 align-items-center">
+          <span class="small text-muted d-none d-md-inline">Hello, John</span>
+          <button id="logoutBtn" class="btn btn-outline-secondary btn-sm">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="card shadow-soft p-4 rounded-12">
+            <div class="d-flex align-items-center gap-3">
+              <img src="https://randomuser.me/api/portraits/men/12.jpg" class="rounded-circle" width="64" height="64" alt="">
+              <div>
+                <h6 class="mb-0">John Doe</h6>
+                <div class="text-muted small">john@example.com</div>
+              </div>
+            </div>
+            <hr>
+            <ul class="list-unstyled small text-muted mb-0">
+              <li class="mb-1"><i class="fa-regular fa-id-card me-2 text-primary"></i>Member since 2023</li>
+              <li class="mb-1"><i class="fa-regular fa-star me-2 text-accent"></i>Loyalty: Gold</li>
+              <li class="mb-1"><i class="fa-regular fa-clock me-2 text-primary"></i>Bookings: 8</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="card shadow-soft rounded-12">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <h5 class="mb-0">Your Bookings</h5>
+                <a href="booking.html" class="btn btn-primary btn-sm"><i class="fa-regular fa-calendar-plus me-2"></i>New Booking</a>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Vehicle</th>
+                      <th>Pickup</th>
+                      <th>Drop</th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center gap-2">
+                          <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=240&auto=format&fit=crop" width="64" class="rounded-12" alt="">
+                          <div>
+                            <div class="fw-semibold">Sedan LX</div>
+                            <div class="text-muted small">Automatic • AC</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>10 Oct, 10:00 AM<br><span class="text-muted small">MG Road</span></td>
+                      <td>12 Oct, 6:00 PM<br><span class="text-muted small">Airport</span></td>
+                      <td><span class="badge text-bg-warning">Pending</span></td>
+                      <td class="text-end"><a href="vehicle-details.html" class="btn btn-outline-primary btn-sm">Details</a></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center gap-2">
+                          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=240&auto=format&fit=crop" width="64" class="rounded-12" alt="">
+                          <div>
+                            <div class="fw-semibold">Cruiser 500</div>
+                            <div class="text-muted small">Manual • ABS</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>20 Sep, 9:00 AM<br><span class="text-muted small">Indiranagar</span></td>
+                      <td>20 Sep, 8:00 PM<br><span class="text-muted small">Indiranagar</span></td>
+                      <td><span class="badge text-bg-success">Completed</span></td>
+                      <td class="text-end"><a href="#" class="btn btn-outline-secondary btn-sm">Invoice</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer py-5 mt-5">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-md">
+          <div class="d-flex align-items-center gap-2 mb-2"><i class="fa-solid fa-car-side"></i><strong>GoRentals</strong></div>
+          <div class="small text-secondary">Drive more. Worry less.</div>
+        </div>
+        <div class="col-md-auto">
+          <div class="d-flex gap-3 fs-5">
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="border-secondary my-4">
+      <div class="small text-center text-secondary">© <span id="year"></span> GoRentals. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
