@@ -32,5 +32,56 @@ public class AuthDtos {
         private String name;
         private String email;
         private Set<String> roles;
+        private String refreshToken;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class RefreshRequest {
+        private String refreshToken;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class TokenResponse {
+        private String token;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class EmailRequest {
+        private String email;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class ResetInitiatedResponse {
+        private String resetToken;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ResetPasswordRequest {
+        private String email;
+        private String token;
+        private String newPassword;
     }
 }
+
+
+
+
+
+
