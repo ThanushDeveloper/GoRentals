@@ -5,12 +5,14 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import DefaultLayout from './layouts/DefaultLayout';
 import { AuthProvider } from './context/AuthContext';
 import Home from './pages/user/Home';
+import BookingHome from './pages/user/BookingHome';
 import Vehicles from './pages/user/Vehicles';
 import VehicleDetails from './pages/user/VehicleDetails';
 import BookingHistory from './pages/user/BookingHistory';
 import Payments from './pages/user/Payments';
 import Profile from './pages/user/Profile';
 import Login from './pages/auth/Login';
+import BookingLogin from './pages/auth/BookingLogin';
 import Register from './pages/auth/Register';
 import Dashboard from './pages/admin/Dashboard';
 import ManageVehicles from './pages/admin/ManageVehicles';
@@ -27,9 +29,9 @@ function App() {
       <AuthProvider>
         {/* App routes */}
         <Routes>
-          {/* Klook-like pages render their own header */}
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          {/* Booking-style pages with shared navbar/footer */}
+          <Route path="/" element={<BookingHome />} />
+          <Route path="/login" element={<BookingLogin />} />
           <Route element={<DefaultLayout /> }>
             <Route path="/vehicles" element={<Vehicles />} />
             <Route path="/vehicles/:id" element={<VehicleDetails />} />
