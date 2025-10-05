@@ -4,6 +4,7 @@ import com.example.gorentals.entity.Vehicle;
 import com.example.gorentals.service.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,12 +27,22 @@ public class VehicleController {
             @RequestParam(required = false) Integer seats,
             @RequestParam(required = false) String transmission
     ) {
-        return ResponseEntity.ok(vehicleService.getAll(type, minPrice, maxPrice, seats, transmission));
+        List<Vehicle> vehicles = vehicleService.getAll(type, minPrice, maxPrice, seats, transmission);
+        vehicles.forEach(v -> {
+            var urls = vehicleService.getImages(v).stream()
+                    .map(img -> "/api/vehicles/images/" + img.getId())
+                    .toList();
+            v.setImageUrls(urls);
+        });
+        return ResponseEntity.ok(vehicles);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Vehicle> get(@PathVariable Long id) {
-        return ResponseEntity.ok(vehicleService.getById(id));
+        Vehicle v = vehicleService.getById(id);
+        var urls = vehicleService.getImages(v).stream().map(img -> "/api/vehicles/images/" + img.getId()).toList();
+        v.setImageUrls(urls);
+        return ResponseEntity.ok(v);
     }
 
     @PostMapping
@@ -53,21 +64,37 @@ public class VehicleController {
         return ResponseEntity.noContent().build();
     }
 
-    // Image endpoints placeholders; implement with DocumentService or dedicated storage
     @PostMapping("/{id}/images")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Vehicle> uploadImage(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
+    public ResponseEntity<Void> uploadImage(@PathVariable Long id, @RequestParam("file") MultipartFile file) throws Exception {
         Vehicle v = vehicleService.getById(id);
-        v.getImageUrls().add("/uploads/" + file.getOriginalFilename());
-        return ResponseEntity.ok(vehicleService.update(id, v));
+        vehicleService.addImage(v, file.getOriginalFilename(), file.getContentType(), file.getBytes());
+        return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{id}/images")
+    @PostMapping("/{id}/images/batch")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Vehicle> deleteImage(@PathVariable Long id, @RequestParam String url) {
+    public ResponseEntity<Void> uploadImages(@PathVariable Long id, @RequestParam("files") List<MultipartFile> files) throws Exception {
         Vehicle v = vehicleService.getById(id);
-        v.getImageUrls().remove(url);
-        return ResponseEntity.ok(vehicleService.update(id, v));
+        for (MultipartFile file : files) {
+            vehicleService.addImage(v, file.getOriginalFilename(), file.getContentType(), file.getBytes());
+        }
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}/images")
+    public ResponseEntity<List<Long>> listImages(@PathVariable Long id) {
+        Vehicle v = vehicleService.getById(id);
+        List<Long> ids = vehicleService.getImages(v).stream().map(img -> img.getId()).toList();
+        return ResponseEntity.ok(ids);
+    }
+
+    @GetMapping(value = "/images/{imageId}")
+    public ResponseEntity<byte[]> getImageBytes(@PathVariable Long imageId) {
+        var img = vehicleService.getImageById(imageId);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(img.getContentType() != null ? img.getContentType() : MediaType.IMAGE_JPEG_VALUE))
+                .body(img.getData());
     }
 }
 

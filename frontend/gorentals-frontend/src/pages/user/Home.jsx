@@ -3,10 +3,23 @@ import KlookHeader from '../../components/KlookHeader';
 import '../../styles/klook.css';
 import axiosClient from '../../api/axiosClient';
 import KlookFooter from '../../components/KlookFooter';
+import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
   const [vehicles, setVehicles] = useState([]);
   const [loadingVehicles, setLoadingVehicles] = useState(false);
+  const [showBooking, setShowBooking] = useState(false);
+  const [selected, setSelected] = useState(null);
+  const [name, setName] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [address, setAddress] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [bookingLoading, setBookingLoading] = useState(false);
+  const [bookingError, setBookingError] = useState(null);
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const load = async () => {
@@ -181,7 +194,7 @@ export default function Home() {
         {loadingVehicles ? (
           <div className="k-vehicle-empty">Loading…</div>
         ) : vehicles.length === 0 ? (
-          <div className="k-vehicle-empty">No vehicles available</div>
+          <div className="k-vehicle-empty">No Vehicles Available</div>
         ) : (
           <div className="k-vehicle-grid">
             {vehicles.map((v) => (
@@ -196,6 +209,7 @@ export default function Home() {
                   <div className="title">{v.make} {v.model}</div>
                   <div className="meta">100+ booked</div>
                   <div className="price">₹ {Number(v.pricePerDay).toLocaleString('en-IN')}</div>
+                  <button className="klook-btn-orange k-rounded-10" style={{marginTop:10}} onClick={() => { setSelected(v); setShowBooking(true); }}>Book Now</button>
                 </div>
               </div>
             ))}
@@ -215,6 +229,58 @@ export default function Home() {
       </section>
 
       <KlookFooter />
+
+      {/* Booking modal */}
+      {showBooking && (
+        <div className="k-modal-backdrop" role="dialog" aria-modal="true">
+          <div className="k-modal">
+            <div className="k-modal-header">
+              <div className="k-modal-title">Book {selected?.make} {selected?.model}</div>
+              <button className="k-modal-close" onClick={() => setShowBooking(false)}>✕</button>
+            </div>
+            <div className="k-modal-body">
+              {bookingError && <div className="k-alert-error">{bookingError}</div>}
+              <div className="k-form-grid">
+                <div className="field">
+                  <label>Name</label>
+                  <input value={name} onChange={(e)=>setName(e.target.value)} placeholder="Your full name" />
+                </div>
+                <div className="field">
+                  <label>Mobile Number</label>
+                  <input value={mobile} onChange={(e)=>setMobile(e.target.value)} placeholder="10-digit mobile" />
+                </div>
+                <div className="field">
+                  <label>Address</label>
+                  <input value={address} onChange={(e)=>setAddress(e.target.value)} placeholder="Street, City" />
+                </div>
+                <div className="field">
+                  <label>Start Date</label>
+                  <input type="date" value={startDate} onChange={(e)=>setStartDate(e.target.value)} />
+                </div>
+                <div className="field">
+                  <label>End Date</label>
+                  <input type="date" value={endDate} onChange={(e)=>setEndDate(e.target.value)} />
+                </div>
+              </div>
+            </div>
+            <div className="k-modal-footer">
+              <button className="k-btn-plain" onClick={() => setShowBooking(false)}>Cancel</button>
+              <button className="klook-btn-orange" disabled={bookingLoading} onClick={async ()=>{
+                if (!user) { navigate('/login'); return; }
+                setBookingLoading(true); setBookingError(null);
+                try {
+                  const params = { vehicleId: selected.id, name, mobile, address, startDate, endDate };
+                  const res = await axiosClient.post('/api/bookings', null, { params });
+                  setShowBooking(false);
+                  navigate(`/payments?bookingId=${res.data.id}&amount=${res.data.totalAmount}`);
+                } catch (e) {
+                  setBookingError(e.response?.data?.message || 'Booking failed');
+                } finally { setBookingLoading(false); }
+              }}>{bookingLoading ? 'Booking…' : 'Confirm Booking'}</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

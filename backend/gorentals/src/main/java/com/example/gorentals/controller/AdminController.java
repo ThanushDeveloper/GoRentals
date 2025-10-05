@@ -2,6 +2,7 @@ package com.example.gorentals.controller;
 
 import com.example.gorentals.entity.*;
 import com.example.gorentals.entity.enums.PaymentStatus;
+import com.example.gorentals.entity.enums.RentalStatus;
 import com.example.gorentals.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -48,5 +49,15 @@ public class AdminController {
         Payment p = paymentRepository.findById(id).orElseThrow();
         p.setStatus(status);
         return ResponseEntity.ok(paymentRepository.save(p));
+    }
+
+    @GetMapping("/bookings")
+    public ResponseEntity<List<Booking>> bookings() { return ResponseEntity.ok(bookingRepository.findAll()); }
+
+    @PutMapping("/bookings/{id}/status")
+    public ResponseEntity<Booking> updateBookingStatus(@PathVariable Long id, @RequestParam RentalStatus status) {
+        Booking b = bookingRepository.findById(id).orElseThrow();
+        b.setStatus(status);
+        return ResponseEntity.ok(bookingRepository.save(b));
     }
 }
