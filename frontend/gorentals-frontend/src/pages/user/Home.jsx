@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import KlookHeader from '../../components/KlookHeader';
 import '../../styles/klook.css';
+import axiosClient from '../../api/axiosClient';
+import KlookFooter from '../../components/KlookFooter';
 
 export default function Home() {
+  const [vehicles, setVehicles] = useState([]);
+  const [loadingVehicles, setLoadingVehicles] = useState(false);
+
+  useEffect(() => {
+    const load = async () => {
+      setLoadingVehicles(true);
+      try {
+        const res = await axiosClient.get('/api/vehicles');
+        setVehicles(res.data || []);
+      } catch (e) {
+        setVehicles([]);
+      } finally {
+        setLoadingVehicles(false);
+      }
+    };
+    load();
+  }, []);
   return (
     <div className="klook">
       <KlookHeader />
@@ -155,6 +174,47 @@ export default function Home() {
           In this bike-friendly city, you can feel the full ambiance of Ocean Drive and the Espanola Way district.
         </p>
       </section>
+
+      {/* You might also like – Vehicles from database */}
+      <section className="k-suggest">
+        <div className="k-section-title">You might also like...</div>
+        {loadingVehicles ? (
+          <div className="k-vehicle-empty">Loading…</div>
+        ) : vehicles.length === 0 ? (
+          <div className="k-vehicle-empty">No vehicles available</div>
+        ) : (
+          <div className="k-vehicle-grid">
+            {vehicles.map((v) => (
+              <div key={v.id} className="k-card">
+                {v.imageUrls?.length ? (
+                  <img alt={`${v.make} ${v.model}`} src={v.imageUrls[0]} />
+                ) : (
+                  <img alt="vehicle" src="https://images.unsplash.com/photo-1517940310602-4d1b06dc1c4f?q=80&w=1200&auto=format&fit=crop" />
+                )}
+                <div className="content">
+                  <div className="subtitle">{v.type} • {v.transmission || 'Automatic'}</div>
+                  <div className="title">{v.make} {v.model}</div>
+                  <div className="meta">100+ booked</div>
+                  <div className="price">₹ {Number(v.pricePerDay).toLocaleString('en-IN')}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Trending sights – static images to match layout */}
+      <section className="k-suggest" style={{marginTop: 18}}>
+        <div className="k-section-title">Trending sights</div>
+        <div className="k-card-row">
+          <div className="k-card"><img alt="s1" src="https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=1200&auto=format&fit=crop" /><div className="content"><div className="title">Antelope Canyon</div></div></div>
+          <div className="k-card"><img alt="s2" src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1200&auto=format&fit=crop" /><div className="content"><div className="title">Horseshoe Bend</div></div></div>
+          <div className="k-card"><img alt="s3" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" /><div className="content"><div className="title">Yosemite</div></div></div>
+          <div className="k-card"><img alt="s4" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1200&auto=format&fit=crop" /><div className="content"><div className="title">Golden Gate</div></div></div>
+        </div>
+      </section>
+
+      <KlookFooter />
     </div>
   );
 }

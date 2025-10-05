@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import KlookHeader from '../../components/KlookHeader';
+import KlookFooter from '../../components/KlookFooter';
+import '../../styles/klook.css';
 
 export default function Register() {
   const { register, loading, error } = useAuth();
@@ -18,36 +21,37 @@ export default function Register() {
   };
 
   return (
-    <div className="container py-5 container-narrow">
-      <div className="row justify-content-center">
-        <div className="col-md-7 col-lg-5">
-          <div className="elevated-card p-4 auth-hero">
-            <h3 className="mb-3">Create your account</h3>
-            {error && <div className="alert alert-danger">{error}</div>}
-            <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
-              <div>
-                <label className="form-label">Name</label>
-                <input type="text" className="form-control" value={name} onChange={(e) => setName(e.target.value)} required />
-              </div>
-              <div>
-                <label className="form-label">Email</label>
-                <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
-              </div>
-              <div>
-                <label className="form-label">Password</label>
-                <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
-              </div>
-              <button disabled={loading} className="btn btn-brand w-100" type="submit">
-                {loading ? 'Creating account...' : 'Register'}
-              </button>
-            </form>
-            <div className="mt-3 text-center">
-              <span>Already have an account? </span>
-              <Link to="/login">Login</Link>
+    <div className="klook">
+      <KlookHeader />
+      <div className="klogin">
+        <div className="card">
+          <div className="title">Create your account</div>
+          {error && <div className="k-alert-error">{error}</div>}
+          <form onSubmit={handleSubmit}>
+            <div className="field">
+              <label>Name</label>
+              <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+            </div>
+            <div className="field">
+              <label>Email</label>
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            </div>
+            <div className="field">
+              <label>Password</label>
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            </div>
+            <button disabled={loading} className="klook-btn-orange cta" type="submit">
+              {loading ? 'Creating account…' : 'Sign up'}
+            </button>
+          </form>
+          <div className="actions">
+            <div>
+              Already have an account? <Link to="/login" className="klook-link-orange">Log in</Link>
             </div>
           </div>
         </div>
       </div>
+      <KlookFooter />
     </div>
   );
 }
