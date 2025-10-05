@@ -1,6 +1,7 @@
 package com.example.gorentals.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.util.HashSet;
@@ -28,6 +29,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String passwordHash;
 
     @ElementCollection(fetch = FetchType.EAGER)
