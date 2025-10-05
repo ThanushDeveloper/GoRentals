@@ -18,10 +18,10 @@ export default function Login() {
   };
 
   return (
-    <div className="container py-5">
+    <div className="container py-5 container-narrow">
       <div className="row justify-content-center">
         <div className="col-md-7 col-lg-5">
-          <div className="elevated-card p-4">
+          <div className="elevated-card p-4 auth-hero">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h3 className="mb-0">Welcome back</h3>
               <button
@@ -57,5 +57,6 @@ export default function Login() {
     </div>
   );
 }
+
 
 

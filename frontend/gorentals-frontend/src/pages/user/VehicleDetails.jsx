@@ -54,7 +54,7 @@ export default function VehicleDetails() {
   if (!vehicle) return null;
 
   return (
-    <div className="container py-4">
+    <div className="container py-4 container-narrow">
       <div className="row g-4">
         <div className="col-md-7">
           <div className="elevated-card overflow-hidden">

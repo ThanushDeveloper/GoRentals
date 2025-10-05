@@ -158,3 +158,49 @@ footer.app-footer {
   0% { transform: scale(1); }
   100% { transform: scale(0); }
 }
+
+/* Premium theme additions */
+html, body, #root { height: 100%; }
+
+/* Correct root selector and add ring color */
+:root {
+  --ring: rgba(37, 99, 235, 0.35);
+}
+
+/* Inputs and interactive elements */
+.form-control, .form-select {
+  background-color: var(--surface);
+  color: var(--fg);
+  border: 1px solid var(--card-border);
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 .2rem var(--ring);
+}
+
+.btn-outline-secondary {
+  color: var(--fg);
+  border-color: var(--card-border);
+}
+.btn-outline-secondary:hover {
+  background-color: var(--surface);
+}
+
+/* Booking-like search bar */
+.search-hero {
+  border: 1px solid var(--card-border);
+  background: var(--surface);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.tab-segment {
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  background: var(--surface);
+}
+.tab-segment .btn { border-radius: 999px; }
+
+/* Utility layout helpers */
+.container-narrow { max-width: 1080px; }
+.glow { box-shadow: 0 0 0 .2rem var(--ring); }

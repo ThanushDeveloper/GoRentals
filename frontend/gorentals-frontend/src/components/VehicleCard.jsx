@@ -13,13 +13,13 @@ export default function VehicleCard({ vehicle }) {
       ) : (
         <div className="bg-light" style={{ height: 180 }} />
       )}
-      <div className="p-3 d-flex flex-column gap-1">
+      <div className="p-3 d-flex flex-column gap-2">
         <div className="d-flex justify-content-between align-items-start">
           <h5 className="mb-0">{vehicle.make} {vehicle.model}</h5>
           <span className="fw-bold">${vehicle.pricePerDay} / day</span>
         </div>
         <div className="muted small">{vehicle.type} • {vehicle.transmission} • {vehicle.seats} seats</div>
-        <div className="mt-2 d-flex gap-2">
+        <div className="mt-1 d-flex gap-2">
           <Link to={`/vehicles/${vehicle.id}`} className="btn btn-brand btn-sm flex-grow-1">Rent Now</Link>
           <Link to={`/vehicles/${vehicle.id}`} className="btn btn-outline-secondary btn-sm">Details</Link>
         </div>
@@ -27,3 +27,4 @@ export default function VehicleCard({ vehicle }) {
     </div>
   );
 }
+
