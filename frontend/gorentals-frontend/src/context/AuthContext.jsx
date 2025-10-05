@@ -24,6 +24,12 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     if (token) localStorage.setItem('token', token);
     else localStorage.removeItem('token');
+    // keep axios default header in sync
+    if (token) {
+      axiosClient.defaults.headers.common.Authorization = `Bearer ${token}`;
+    } else {
+      delete axiosClient.defaults.headers.common.Authorization;
+    }
   }, [token]);
 
   useEffect(() => {
@@ -36,9 +42,19 @@ export function AuthProvider({ children }) {
     setError(null);
     try {
       const res = await axiosClient.post('/api/auth/login', { email, password });
-      setToken(res.data.token);
-      setRefreshToken(res.data.refreshToken);
-      setUser({ id: res.data.userId, name: res.data.name, email: res.data.email, roles: res.data.roles });
+      // Persist immediately to avoid race conditions before first protected fetch
+      const token = res.data.token;
+      const rt = res.data.refreshToken;
+      const userObj = { id: res.data.userId, name: res.data.name, email: res.data.email, roles: res.data.roles };
+      localStorage.setItem('token', token);
+      localStorage.setItem('refreshToken', rt);
+      localStorage.setItem('user', JSON.stringify(userObj));
+      // Ensure axios sends auth on the very next request
+      axiosClient.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+      setToken(token);
+      setRefreshToken(rt);
+      setUser(userObj);
       return { ok: true };
     } catch (e) {
       setError(e.response?.data?.message || 'Login failed');
@@ -53,9 +69,19 @@ export function AuthProvider({ children }) {
     setError(null);
     try {
       const res = await axiosClient.post('/api/auth/register', { name, email, password });
-      setToken(res.data.token);
-      setRefreshToken(res.data.refreshToken);
-      setUser({ id: res.data.userId, name: res.data.name, email: res.data.email, roles: res.data.roles });
+      // Persist immediately to avoid race conditions before first protected fetch
+      const token = res.data.token;
+      const rt = res.data.refreshToken;
+      const userObj = { id: res.data.userId, name: res.data.name, email: res.data.email, roles: res.data.roles };
+      localStorage.setItem('token', token);
+      localStorage.setItem('refreshToken', rt);
+      localStorage.setItem('user', JSON.stringify(userObj));
+      // Ensure axios sends auth on the very next request
+      axiosClient.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+      setToken(token);
+      setRefreshToken(rt);
+      setUser(userObj);
       return { ok: true };
     } catch (e) {
       setError(e.response?.data?.message || 'Registration failed');
@@ -77,6 +103,7 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('user');
+    delete axiosClient.defaults.headers.common.Authorization;
   };
 
   const isAdmin = !!user?.roles?.some?.((r) => String(r).includes('ADMIN'));
