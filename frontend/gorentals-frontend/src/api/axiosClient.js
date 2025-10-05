@@ -29,6 +29,8 @@ axiosClient.interceptors.response.use(
           const res = await axiosClient.post('/api/auth/refresh', { refreshToken });
           const newToken = res.data.token;
           localStorage.setItem('token', newToken);
+          // Ensure subsequent requests use the fresh token
+          axiosClient.defaults.headers.common.Authorization = `Bearer ${newToken}`;
           originalRequest.headers.Authorization = `Bearer ${newToken}`;
           return axiosClient(originalRequest);
         } catch (refreshError) {
