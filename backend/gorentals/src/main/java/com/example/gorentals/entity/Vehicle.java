@@ -51,9 +51,7 @@ public class Vehicle {
 
     private String fuelType;
 
-    @ElementCollection
-    @CollectionTable(name = "vehicle_images", joinColumns = @JoinColumn(name = "vehicle_id"))
-    @Column(name = "image_url")
+    @Transient
     @Builder.Default
     private List<String> imageUrls = new ArrayList<>();
 }

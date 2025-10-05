@@ -42,6 +42,11 @@ public class Booking {
     private BigDecimal totalAmount;
 
     private String feedback; // Optional user feedback on booking
+
+    // Customer provided details at booking time
+    private String customerName;
+    private String customerMobile;
+    private String customerAddress;
 }
 
 

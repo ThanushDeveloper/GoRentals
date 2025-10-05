@@ -51,6 +51,8 @@ export default function BookingHistory() {
             <tr>
               <th>ID</th>
               <th>Vehicle</th>
+              <th>Name</th>
+              <th>Mobile</th>
               <th>Start</th>
               <th>End</th>
               <th>Status</th>
@@ -63,13 +65,15 @@ export default function BookingHistory() {
               <tr key={b.id}>
                 <td>{b.id}</td>
                 <td>{b.vehicle?.make} {b.vehicle?.model}</td>
+                <td>{b.customerName}</td>
+                <td>{b.customerMobile}</td>
                 <td>{b.startDate}</td>
                 <td>{b.endDate}</td>
                 <td>{b.status}</td>
                 <td>${b.totalAmount}</td>
                 <td>
                   <div className="btn-group btn-group-sm">
-                    <button className="btn btn-outline-danger" onClick={() => cancelBooking(b.id)} disabled={b.status === 'CANCELLED'}>Cancel</button>
+                    <button className="btn btn-outline-danger" onClick={() => cancelBooking(b.id)} disabled={b.status === 'CANCELLED' || b.status === 'RETURNED'}>Cancel</button>
                     <button className="btn btn-outline-primary" onClick={() => extendBooking(b.id)}>Extend</button>
                   </div>
                 </td>

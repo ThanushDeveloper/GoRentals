@@ -38,12 +38,15 @@ public class BookingController {
     public ResponseEntity<Booking> create(
             @AuthenticationPrincipal UserDetails principal,
             @RequestParam Long vehicleId,
+            @RequestParam String name,
+            @RequestParam String mobile,
+            @RequestParam String address,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate
     ) {
         User user = userService.findByEmailOrThrow(principal.getUsername());
         Vehicle v = vehicleService.getById(vehicleId);
-        return ResponseEntity.ok(bookingService.create(user, v, startDate, endDate));
+        return ResponseEntity.ok(bookingService.create(user, v, name, mobile, address, startDate, endDate));
     }
 
     @PostMapping("/{id}/cancel")

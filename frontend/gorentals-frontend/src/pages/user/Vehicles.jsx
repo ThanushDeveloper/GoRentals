@@ -103,6 +103,9 @@ export default function Vehicles() {
           </div>
         ))}
       </div>
+      {!filtered.length && !loading && !error && (
+        <div className="text-center py-5">No Vehicles Available</div>
+      )}
 
       <nav className="mt-4">
         <ul className="pagination">
