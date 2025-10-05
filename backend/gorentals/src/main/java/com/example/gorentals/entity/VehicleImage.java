@@ -16,6 +16,7 @@ public class VehicleImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", columnDefinition = "BIGINT PRIMARY KEY AUTO_INCREMENT")
     private Long id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
