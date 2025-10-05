@@ -30,15 +30,14 @@ export default function Reviews() {
   return (
     <div className="container py-4">
       <h3>My Reviews</h3>
-      <ul className="list-group">
+      <ul className="list-group elevated-card p-0">
         {items.map((r) => (
-          <li key={r.id} className="list-group-item">
+          <li key={r.id} className="list-group-item bg-transparent">
             <strong>{r.vehicle}:</strong> {r.feedback}
           </li>
         ))}
-        {!items.length && <li className="list-group-item">No reviews yet.</li>}
+        {!items.length && <li className="list-group-item bg-transparent">No reviews yet.</li>}
       </ul>
     </div>
   );
 }
-

@@ -37,8 +37,8 @@ export default function PaymentsAdmin() {
   return (
     <div className="container py-4">
       <h3>Payments</h3>
-      <div className="table-responsive">
-        <table className="table table-striped">
+      <div className="elevated-card p-3 table-responsive">
+        <table className="table align-middle">
           <thead>
             <tr>
               <th>ID</th>

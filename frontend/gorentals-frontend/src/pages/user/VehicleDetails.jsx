@@ -56,38 +56,44 @@ export default function VehicleDetails() {
   return (
     <div className="container py-4">
       <div className="row g-4">
-        <div className="col-md-6">
-          {vehicle.imageUrls?.length ? (
-            <img src={vehicle.imageUrls[0]} alt={`${vehicle.make} ${vehicle.model}`} className="img-fluid rounded" />
-          ) : (
-            <div className="bg-light rounded" style={{ height: 300 }} />
-          )}
-        </div>
-        <div className="col-md-6">
-          <h2>{vehicle.make} {vehicle.model} ({vehicle.year})</h2>
-          <p className="text-muted">{vehicle.type} • {vehicle.transmission} • {vehicle.seats} seats • {vehicle.fuelType}</p>
-          <p>{vehicle.description}</p>
-          <h4 className="fw-bold mb-3">${vehicle.pricePerDay} / day</h4>
-
-          <div className="row g-2 align-items-end">
-            <div className="col-md-4">
-              <label className="form-label">Start Date</label>
-              <input type="date" className="form-control" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-            </div>
-            <div className="col-md-4">
-              <label className="form-label">End Date</label>
-              <input type="date" className="form-control" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-            </div>
-            <div className="col-md-4">
-              <button disabled={bookingLoading} onClick={handleBook} className="btn btn-primary w-100">
-                {bookingLoading ? 'Booking...' : 'Book Now'}
-              </button>
-            </div>
+        <div className="col-md-7">
+          <div className="elevated-card overflow-hidden">
+            {vehicle.imageUrls?.length ? (
+              <img src={vehicle.imageUrls[0]} alt={`${vehicle.make} ${vehicle.model}`} className="w-100" style={{ maxHeight: 420, objectFit: 'cover' }} />
+            ) : (
+              <div className="bg-light" style={{ height: 420 }} />
+            )}
           </div>
-          {bookingError && <div className="alert alert-danger mt-3">{bookingError}</div>}
+        </div>
+        <div className="col-md-5">
+          <div className="elevated-card p-3">
+            <div className="d-flex justify-content-between align-items-start">
+              <h2 className="mb-1">{vehicle.make} {vehicle.model} ({vehicle.year})</h2>
+              <span className="badge bg-primary">{vehicle.type}</span>
+            </div>
+            <div className="muted mb-2">{vehicle.transmission} • {vehicle.seats} seats • {vehicle.fuelType}</div>
+            <p className="mb-3">{vehicle.description}</p>
+            <h4 className="fw-bold mb-3">${vehicle.pricePerDay} / day</h4>
+
+            <div className="row g-2 align-items-end">
+              <div className="col-md-6">
+                <label className="form-label">Start Date</label>
+                <input type="date" className="form-control" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+              </div>
+              <div className="col-md-6">
+                <label className="form-label">End Date</label>
+                <input type="date" className="form-control" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+              </div>
+              <div className="col-12">
+                <button disabled={bookingLoading} onClick={handleBook} className="btn btn-brand w-100">
+                  {bookingLoading ? 'Booking...' : 'Book Now'}
+                </button>
+              </div>
+            </div>
+            {bookingError && <div className="alert alert-danger mt-3">{bookingError}</div>}
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
