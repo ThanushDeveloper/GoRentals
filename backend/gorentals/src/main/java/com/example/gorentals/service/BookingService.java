@@ -22,7 +22,7 @@ public class BookingService {
     public List<Booking> findByVehicle(Vehicle vehicle) { return bookingRepository.findByVehicle(vehicle); }
 
     @Transactional
-    public Booking create(User user, Vehicle vehicle, java.time.LocalDate start, java.time.LocalDate end) {
+    public Booking create(User user, Vehicle vehicle, String name, String mobile, String address, java.time.LocalDate start, java.time.LocalDate end) {
         long days = ChronoUnit.DAYS.between(start, end);
         if (days <= 0) throw new IllegalArgumentException("Invalid dates");
         BigDecimal total = vehicle.getPricePerDay().multiply(BigDecimal.valueOf(days));
@@ -31,8 +31,11 @@ public class BookingService {
                 .vehicle(vehicle)
                 .startDate(start)
                 .endDate(end)
-                .status(RentalStatus.ACTIVE)
+                .status(RentalStatus.PENDING)
                 .totalAmount(total)
+                .customerName(name)
+                .customerMobile(mobile)
+                .customerAddress(address)
                 .build();
         return bookingRepository.save(booking);
     }

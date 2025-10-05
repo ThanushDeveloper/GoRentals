@@ -1,6 +1,8 @@
 package com.example.gorentals.service;
 
 import com.example.gorentals.entity.Vehicle;
+import com.example.gorentals.entity.VehicleImage;
+import com.example.gorentals.repository.VehicleImageRepository;
 import com.example.gorentals.repository.VehicleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
@@ -13,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VehicleService {
     private final VehicleRepository vehicleRepository;
+    private final VehicleImageRepository vehicleImageRepository;
 
     public List<Vehicle> getAll(String type, BigDecimal minPrice, BigDecimal maxPrice, Integer seats, String transmission) {
         Specification<Vehicle> spec = Specification.where(null);
@@ -43,10 +46,31 @@ public class VehicleService {
         existing.setSeats(v.getSeats());
         existing.setTransmission(v.getTransmission());
         existing.setFuelType(v.getFuelType());
-        existing.setImageUrls(v.getImageUrls());
         return vehicleRepository.save(existing);
     }
 
     public void delete(Long id) { vehicleRepository.deleteById(id); }
-}
 
+    public VehicleImage addImage(Vehicle vehicle, String fileName, String contentType, byte[] data) {
+        VehicleImage image = VehicleImage.builder()
+                .vehicle(vehicle)
+                .fileName(fileName)
+                .contentType(contentType)
+                .data(data)
+                .createdAt(java.time.Instant.now())
+                .build();
+        return vehicleImageRepository.save(image);
+    }
+
+    public java.util.List<VehicleImage> getImages(Vehicle vehicle) {
+        return vehicleImageRepository.findByVehicle(vehicle);
+    }
+
+    public void deleteImage(Long imageId) {
+        vehicleImageRepository.deleteById(imageId);
+    }
+
+    public VehicleImage getImageById(Long imageId) {
+        return vehicleImageRepository.findById(imageId).orElseThrow();
+    }
+}

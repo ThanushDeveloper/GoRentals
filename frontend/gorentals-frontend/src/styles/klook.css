@@ -284,6 +284,17 @@
 .klook-footer-logos .logo-text { font-weight: 800; color:#374151; }
 .klook-footer-copy { margin-top: 8px; color: var(--k-muted); }
 
+/* Modal for booking */
+.k-modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.5); display:flex; align-items:center; justify-content:center; padding: 16px; z-index: 60; }
+.k-modal { width: 100%; max-width: 560px; background: var(--k-surface); border: 1px solid var(--k-border); border-radius: 16px; box-shadow: var(--k-elev); overflow: hidden; }
+.k-modal-header { display:flex; align-items:center; justify-content:space-between; padding: 12px 16px; border-bottom: 1px solid var(--k-border); }
+.k-modal-title { font-weight: 800; }
+.k-modal-close { background: transparent; border: none; font-size: 18px; }
+.k-modal-body { padding: 16px; }
+.k-form-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.k-form-grid .field { display:grid; gap:6px; }
+.k-modal-footer { display:flex; align-items:center; justify-content:flex-end; gap: 10px; padding: 12px 16px; border-top: 1px solid var(--k-border); }
+
 /* Login page */
 .klogin {
   max-width: 420px; margin: 40px auto; padding: 0 20px;

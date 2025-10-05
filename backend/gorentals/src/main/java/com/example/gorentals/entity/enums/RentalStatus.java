@@ -1,8 +1,9 @@
 package com.example.gorentals.entity.enums;
 
 public enum RentalStatus {
-    ACTIVE,
-    CANCELLED,
-    COMPLETED
+    PENDING,
+    BOOKED,
+    BIKE_TAKEN,
+    RETURNED,
+    CANCELLED
 }
-
