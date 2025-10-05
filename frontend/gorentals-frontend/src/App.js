@@ -30,10 +30,10 @@ function App() {
           {/* Klook-like pages render their own header */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route element={<DefaultLayout /> }>
             <Route path="/vehicles" element={<Vehicles />} />
             <Route path="/vehicles/:id" element={<VehicleDetails />} />
-            <Route path="/register" element={<Register />} />
 
             <Route element={<RequireAuth role="USER" />}> 
               <Route path="/bookings" element={<BookingHistory />} />
