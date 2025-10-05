@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import { AuthProvider } from './context/AuthContext';
 import Home from './pages/user/Home';
 import Vehicles from './pages/user/Vehicles';
@@ -49,6 +50,7 @@ function App() {
             <Route path="/admin/reports" element={<Reports />} />
           </Route>
         </Routes>
+        <Footer />
       </AuthProvider>
     </BrowserRouter>
   );

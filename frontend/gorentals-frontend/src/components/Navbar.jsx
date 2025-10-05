@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../theme/ThemeContext';
 
 export default function Navbar() {
   const { user, logout, isAdmin, isUser } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -11,10 +13,14 @@ export default function Navbar() {
     navigate('/login');
   };
 
+  const variantClass = theme === 'dark' ? 'navbar-dark' : 'navbar-light';
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className={`navbar navbar-expand-lg ${variantClass} nav-surface`}>
       <div className="container">
-        <Link className="navbar-brand" to="/">GoRental</Link>
+        <Link className="navbar-brand d-flex align-items-center gap-2" to="/">
+          <span className="brand-gradient fw-bold">GoRental</span>
+        </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -39,7 +45,12 @@ export default function Navbar() {
               </li>
             )}
           </ul>
-          <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav ms-auto align-items-lg-center gap-2">
+            <li className="nav-item">
+              <button className="btn btn-sm btn-outline-secondary" onClick={toggleTheme} title="Toggle theme">
+                {theme === 'dark' ? 'Light' : 'Dark'}
+              </button>
+            </li>
             {!user ? (
               <>
                 <li className="nav-item">

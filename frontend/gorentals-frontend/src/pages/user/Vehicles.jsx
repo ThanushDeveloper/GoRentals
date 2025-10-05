@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import axiosClient from '../../api/axiosClient';
 import Spinner from '../../components/Spinner';
+import VehicleCard from '../../components/VehicleCard';
 
 export default function Vehicles() {
   const [vehicles, setVehicles] = useState([]);
@@ -50,39 +51,44 @@ export default function Vehicles() {
 
   return (
     <div className="container py-4">
-      <h2 className="mb-4">Vehicles</h2>
-      <div className="row g-3 mb-4">
-        <div className="col-md-3">
-          <input className="form-control" placeholder="Search make or model" value={query.q} onChange={(e) => setQuery({ ...query, q: e.target.value })} />
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+        <div>
+          <h2 className="mb-1">Vehicles</h2>
+          <div className="muted">Choose your perfect ride</div>
         </div>
-        <div className="col-md-2">
-          <input className="form-control" placeholder="Type" value={query.type} onChange={(e) => setQuery({ ...query, type: e.target.value })} />
-        </div>
-        <div className="col-md-2">
-          <input className="form-control" placeholder="Min Price" type="number" value={query.minPrice} onChange={(e) => setQuery({ ...query, minPrice: e.target.value })} />
-        </div>
-        <div className="col-md-2">
-          <input className="form-control" placeholder="Max Price" type="number" value={query.maxPrice} onChange={(e) => setQuery({ ...query, maxPrice: e.target.value })} />
-        </div>
-        <div className="col-md-2">
-          <input className="form-control" placeholder="Seats" type="number" value={query.seats} onChange={(e) => setQuery({ ...query, seats: e.target.value })} />
-        </div>
-        <div className="col-md-2">
-          <select className="form-select" value={query.transmission} onChange={(e) => setQuery({ ...query, transmission: e.target.value })}>
-            <option value="">Transmission</option>
-            <option value="Automatic">Automatic</option>
-            <option value="Manual">Manual</option>
-          </select>
-        </div>
-        <div className="col-md-2">
-          <select className="form-select" value={query.sort} onChange={(e) => setQuery({ ...query, sort: e.target.value })}>
-            <option value="">Sort</option>
-            <option value="priceAsc">Price: Low to High</option>
-            <option value="priceDesc">Price: High to Low</option>
-          </select>
-        </div>
-        <div className="col-md-2">
-          <button className="btn btn-outline-secondary w-100" onClick={() => setQuery({ type: '', minPrice: '', maxPrice: '', seats: '', transmission: '' })}>Reset</button>
+        <div className="row g-2">
+          <div className="col-12 col-md-auto">
+            <input className="form-control" placeholder="Search make or model" value={query.q} onChange={(e) => setQuery({ ...query, q: e.target.value })} />
+          </div>
+          <div className="col-6 col-md-auto">
+            <input className="form-control" placeholder="Type" value={query.type} onChange={(e) => setQuery({ ...query, type: e.target.value })} />
+          </div>
+          <div className="col-6 col-md-auto">
+            <input className="form-control" placeholder="Seats" type="number" value={query.seats} onChange={(e) => setQuery({ ...query, seats: e.target.value })} />
+          </div>
+          <div className="col-6 col-md-auto">
+            <input className="form-control" placeholder="Min Price" type="number" value={query.minPrice} onChange={(e) => setQuery({ ...query, minPrice: e.target.value })} />
+          </div>
+          <div className="col-6 col-md-auto">
+            <input className="form-control" placeholder="Max Price" type="number" value={query.maxPrice} onChange={(e) => setQuery({ ...query, maxPrice: e.target.value })} />
+          </div>
+          <div className="col-6 col-md-auto">
+            <select className="form-select" value={query.transmission} onChange={(e) => setQuery({ ...query, transmission: e.target.value })}>
+              <option value="">Transmission</option>
+              <option value="Automatic">Automatic</option>
+              <option value="Manual">Manual</option>
+            </select>
+          </div>
+          <div className="col-6 col-md-auto">
+            <select className="form-select" value={query.sort} onChange={(e) => setQuery({ ...query, sort: e.target.value })}>
+              <option value="">Sort</option>
+              <option value="priceAsc">Price: Low to High</option>
+              <option value="priceDesc">Price: High to Low</option>
+            </select>
+          </div>
+          <div className="col-12 col-md-auto">
+            <button className="btn btn-outline-secondary w-100" onClick={() => setQuery({ q: '', type: '', minPrice: '', maxPrice: '', seats: '', transmission: '', sort: '' })}>Reset</button>
+          </div>
         </div>
       </div>
 
@@ -91,22 +97,8 @@ export default function Vehicles() {
 
       <div className="row g-3">
         {pageItems.map((v) => (
-          <div className="col-md-3" key={v.id}>
-            <div className="card h-100">
-              {v.imageUrls?.length ? (
-                <img src={v.imageUrls[0]} alt={`${v.make} ${v.model}`} className="card-img-top" style={{ height: 160, objectFit: 'cover' }} />
-              ) : (
-                <div className="bg-light" style={{ height: 160 }} />
-              )}
-              <div className="card-body d-flex flex-column">
-                <h5 className="card-title">{v.make} {v.model}</h5>
-                <p className="card-text text-muted">{v.type} • {v.transmission} • {v.seats} seats</p>
-                <div className="mt-auto d-flex justify-content-between align-items-center">
-                  <span className="fw-bold">${v.pricePerDay} / day</span>
-                  <a href={`/vehicles/${v.id}`} className="btn btn-sm btn-primary">View</a>
-                </div>
-              </div>
-            </div>
+          <div className="col-sm-6 col-md-4 col-lg-3" key={v.id}>
+            <VehicleCard vehicle={v} />
           </div>
         ))}
       </div>

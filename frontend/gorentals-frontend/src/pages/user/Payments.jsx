@@ -35,7 +35,7 @@ export default function Payments() {
       <h3>Payment</h3>
       {error && <div className="alert alert-danger">{error}</div>}
       {success && <div className="alert alert-success">{success}</div>}
-      <form onSubmit={handlePay} className="card p-3 shadow-sm" style={{ maxWidth: 480 }}>
+      <form onSubmit={handlePay} className="elevated-card p-3" style={{ maxWidth: 480 }}>
         <div className="mb-3">
           <label className="form-label">Amount</label>
           <input className="form-control" value={amount} readOnly />
@@ -48,7 +48,7 @@ export default function Payments() {
             <option value="CASH">Cash</option>
           </select>
         </div>
-        <button disabled={loading} className="btn btn-primary" type="submit">
+        <button disabled={loading} className="btn btn-brand" type="submit">
           {loading ? 'Processing...' : 'Pay'}
         </button>
       </form>
