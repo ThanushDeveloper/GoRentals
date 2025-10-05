@@ -50,44 +50,45 @@ export default function Vehicles() {
   const pageItems = filtered.slice((page - 1) * pageSize, page * pageSize);
 
   return (
-    <div className="container py-4">
-      <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+    <div className="container py-4 container-narrow">
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-3">
         <div>
           <h2 className="mb-1">Vehicles</h2>
           <div className="muted">Choose your perfect ride</div>
         </div>
-        <div className="row g-2">
-          <div className="col-12 col-md-auto">
+        <div className="tab-segment p-1 d-inline-flex gap-1">
+          <button className={`btn btn-sm ${query.sort === '' ? 'btn-brand' : 'btn-outline-secondary'}`} onClick={() => setQuery({ ...query, sort: '' })}>Our picks</button>
+          <button className={`btn btn-sm ${query.sort === 'priceAsc' ? 'btn-brand' : 'btn-outline-secondary'}`} onClick={() => setQuery({ ...query, sort: 'priceAsc' })}>Lowest price</button>
+          <button className={`btn btn-sm ${query.sort === 'priceDesc' ? 'btn-brand' : 'btn-outline-secondary'}`} onClick={() => setQuery({ ...query, sort: 'priceDesc' })}>Top price</button>
+        </div>
+      </div>
+
+      <div className="search-hero p-2 p-md-3 mb-3">
+        <div className="row g-2 align-items-center">
+          <div className="col-12 col-md-4">
             <input className="form-control" placeholder="Search make or model" value={query.q} onChange={(e) => setQuery({ ...query, q: e.target.value })} />
           </div>
-          <div className="col-6 col-md-auto">
+          <div className="col-6 col-md-2">
             <input className="form-control" placeholder="Type" value={query.type} onChange={(e) => setQuery({ ...query, type: e.target.value })} />
           </div>
-          <div className="col-6 col-md-auto">
+          <div className="col-6 col-md-2">
             <input className="form-control" placeholder="Seats" type="number" value={query.seats} onChange={(e) => setQuery({ ...query, seats: e.target.value })} />
           </div>
-          <div className="col-6 col-md-auto">
+          <div className="col-6 col-md-2">
             <input className="form-control" placeholder="Min Price" type="number" value={query.minPrice} onChange={(e) => setQuery({ ...query, minPrice: e.target.value })} />
           </div>
-          <div className="col-6 col-md-auto">
+          <div className="col-6 col-md-2">
             <input className="form-control" placeholder="Max Price" type="number" value={query.maxPrice} onChange={(e) => setQuery({ ...query, maxPrice: e.target.value })} />
           </div>
-          <div className="col-6 col-md-auto">
+          <div className="col-6 col-md-2">
             <select className="form-select" value={query.transmission} onChange={(e) => setQuery({ ...query, transmission: e.target.value })}>
               <option value="">Transmission</option>
               <option value="Automatic">Automatic</option>
               <option value="Manual">Manual</option>
             </select>
           </div>
-          <div className="col-6 col-md-auto">
-            <select className="form-select" value={query.sort} onChange={(e) => setQuery({ ...query, sort: e.target.value })}>
-              <option value="">Sort</option>
-              <option value="priceAsc">Price: Low to High</option>
-              <option value="priceDesc">Price: High to Low</option>
-            </select>
-          </div>
-          <div className="col-12 col-md-auto">
-            <button className="btn btn-outline-secondary w-100" onClick={() => setQuery({ q: '', type: '', minPrice: '', maxPrice: '', seats: '', transmission: '', sort: '' })}>Reset</button>
+          <div className="col-6 col-md-2 d-grid">
+            <button className="btn btn-outline-secondary" onClick={() => setQuery({ q: '', type: '', minPrice: '', maxPrice: '', seats: '', transmission: '', sort: '' })}>Reset</button>
           </div>
         </div>
       </div>

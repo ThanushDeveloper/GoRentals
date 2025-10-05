@@ -18,10 +18,10 @@ export default function Register() {
   };
 
   return (
-    <div className="container py-5">
+    <div className="container py-5 container-narrow">
       <div className="row justify-content-center">
         <div className="col-md-7 col-lg-5">
-          <div className="elevated-card p-4">
+          <div className="elevated-card p-4 auth-hero">
             <h3 className="mb-3">Create your account</h3>
             {error && <div className="alert alert-danger">{error}</div>}
             <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
