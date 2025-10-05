@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import KlookHeader from '../../components/KlookHeader';
@@ -6,19 +6,22 @@ import KlookFooter from '../../components/KlookFooter';
 import '../../styles/klook.css';
 
 export default function Login() {
-  const { login, loading, error, isAdmin, isUser } = useAuth();
+  const { login, loading, error, isAdmin, isUser, user } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await login(email, password);
-    if (res.ok) {
+    await login(email, password);
+  };
+
+  useEffect(() => {
+    if (!loading && user) {
       if (isAdmin) navigate('/admin');
       else navigate('/');
     }
-  };
+  }, [user, isAdmin, loading, navigate]);
 
   return (
     <div className="klook">
