@@ -35,7 +35,7 @@ public class Booking {
     private LocalDate endDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 32)
     private RentalStatus status;
 
     @Column(nullable = false)
