@@ -66,6 +66,9 @@ public class AuthController {
     @PostMapping("/refresh")
     public ResponseEntity<?> refresh(@RequestBody AuthDtos.RefreshRequest request) {
         var rt = authService.findRefreshTokenOrThrow(request.getRefreshToken());
+        if (rt.isRevoked() || rt.getExpiresAt().isBefore(java.time.LocalDateTime.now())) {
+            return ResponseEntity.status(401).body(java.util.Map.of("message", "Refresh token invalid or expired"));
+        }
         var user = rt.getUser();
         String token = jwtService.generateToken(user.getEmail(), new HashMap<>());
         return ResponseEntity.ok(AuthDtos.TokenResponse.builder().token(token).build());
@@ -84,7 +87,10 @@ public class AuthController {
         var updated = authService.resetPassword(request.getToken(), userService.encodePassword(request.getNewPassword()));
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestBody AuthDtos.RefreshRequest request) {
+        authService.revokeRefreshToken(request.getRefreshToken());
+        return ResponseEntity.ok().build();
+    }
 }
-
-
-

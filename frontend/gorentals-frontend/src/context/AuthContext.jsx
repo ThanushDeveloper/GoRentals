@@ -66,6 +66,11 @@ export function AuthProvider({ children }) {
   };
 
   const logout = () => {
+    const rt = localStorage.getItem('refreshToken');
+    // fire-and-forget server revoke
+    if (rt) {
+      axiosClient.post('/api/auth/logout', { refreshToken: rt }).catch(() => {});
+    }
     setUser(null);
     setToken(null);
     setRefreshToken(null);
@@ -85,4 +90,5 @@ export function AuthProvider({ children }) {
 export function useAuth() {
   return useContext(AuthContext);
 }
+
 

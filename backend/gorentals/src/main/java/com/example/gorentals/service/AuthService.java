@@ -44,6 +44,13 @@ public class AuthService {
     }
 
     @Transactional
+    public void revokeRefreshToken(String token) {
+        RefreshToken t = refreshTokenRepository.findByToken(token).orElseThrow();
+        t.setRevoked(true);
+        refreshTokenRepository.save(t);
+    }
+
+    @Transactional
     public PasswordResetToken createResetToken(User user) {
         PasswordResetToken t = PasswordResetToken.builder()
                 .user(user)
@@ -67,3 +74,4 @@ public class AuthService {
         return userRepository.save(user);
     }
 }
+

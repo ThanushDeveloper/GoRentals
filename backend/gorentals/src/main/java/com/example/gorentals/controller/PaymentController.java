@@ -2,6 +2,7 @@ package com.example.gorentals.controller;
 
 import com.example.gorentals.entity.Payment;
 import com.example.gorentals.service.PaymentService;
+import com.example.gorentals.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,6 +16,7 @@ import java.math.BigDecimal;
 public class PaymentController {
 
     private final PaymentService paymentService;
+    private final PaymentRepository paymentRepository;
 
     @PostMapping
     @PreAuthorize("hasRole('USER')")
@@ -25,7 +27,7 @@ public class PaymentController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Payment> get(@PathVariable Long id) {
-        return ResponseEntity.ok(paymentService.approve(id));
+        return ResponseEntity.ok(paymentRepository.findById(id).orElseThrow());
     }
 
     @PostMapping("/{id}/approve")
@@ -40,3 +42,4 @@ public class PaymentController {
         return ResponseEntity.ok(paymentService.reject(id));
     }
 }
+
