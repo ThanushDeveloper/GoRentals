@@ -29,15 +29,16 @@ export default function Dashboard() {
 
   return (
     <div className="container py-4">
-      <h3>Admin Dashboard</h3>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h3 className="mb-0">Admin Dashboard</h3>
+        <div className="muted">Overview</div>
+      </div>
       <div className="row g-3">
         {Object.entries(data).map(([key, val]) => (
-          <div className="col-md-3" key={key}>
-            <div className="card text-center shadow-sm">
-              <div className="card-body">
-                <h5 className="card-title text-capitalize">{key}</h5>
-                <p className="display-6 fw-bold">{val}</p>
-              </div>
+          <div className="col-6 col-md-3" key={key}>
+            <div className="elevated-card text-center p-3">
+              <div className="muted text-uppercase small">{key.replace(/_/g, ' ')}</div>
+              <div className="display-6 fw-bold">{val}</div>
             </div>
           </div>
         ))}
