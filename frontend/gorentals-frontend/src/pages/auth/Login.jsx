@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import KlookHeader from '../../components/KlookHeader';
+import KlookFooter from '../../components/KlookFooter';
 import '../../styles/klook.css';
 
 export default function Login() {
@@ -57,6 +58,7 @@ export default function Login() {
           </div>
         </div>
       </div>
+      <KlookFooter />
     </div>
   );
 }

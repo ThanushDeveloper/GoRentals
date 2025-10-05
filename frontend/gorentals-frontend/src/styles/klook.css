@@ -251,6 +251,39 @@
 .k-section-title { font-size: 20px; font-weight: 800; margin-bottom: 12px; }
 .k-expect-text { color: var(--k-muted); max-width: 780px; line-height: 1.7; }
 
+/* Suggestions carousel + trending sights (cards) */
+.k-suggest {
+  max-width: 1200px; margin: 0 auto; padding: 0 20px; overflow: hidden;
+}
+.k-suggest .k-section-title { margin: 20px 0 12px; }
+.k-card-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.k-card { background: var(--k-surface); border: 1px solid var(--k-border); border-radius: 16px; box-shadow: var(--k-elev); overflow: hidden; }
+.k-card img { width: 100%; height: 180px; object-fit: cover; }
+.k-card .content { padding: 14px; display: grid; gap: 8px; }
+.k-card .subtitle { color: var(--k-muted); font-size: 13px; }
+.k-card .title { font-weight: 800; line-height: 1.3; }
+.k-card .meta { color: var(--k-muted); font-size: 13px; }
+.k-card .price { font-weight: 800; }
+.k-tag { display:inline-block; background:#f3f4f6; border:1px solid var(--k-border); padding:4px 8px; border-radius:999px; font-size:12px; font-weight:700; }
+
+/* Vehicle grid under What to expect */
+.k-vehicle-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.k-vehicle-empty { display:flex; align-items:center; justify-content:center; height:120px; background:#f9fafb; border:1px dashed var(--k-border); border-radius:16px; font-weight:700; color:#6b7280; }
+
+/* Footer */
+.klook-footer { background: var(--k-surface); border-top:1px solid var(--k-border); margin-top: 40px; }
+.klook-footer-inner { max-width: 1200px; margin: 0 auto; padding: 24px 20px 40px; }
+.klook-footer-columns { display:grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
+.klook-footer-title { font-weight: 800; margin-bottom: 10px; }
+.klook-footer-col ul { list-style: none; margin: 0; padding: 0; }
+.klook-footer-col li { margin: 8px 0; }
+.klook-footer-col a { color: inherit; text-decoration: none; }
+.klook-footer-currency { display:flex; align-items:center; gap:10px; margin-top: 20px; font-weight:700; }
+.klook-footer-disclaimer { margin-top: 24px; color: var(--k-muted); }
+.klook-footer-logos { display:flex; gap:18px; align-items:center; flex-wrap:wrap; margin-top: 14px; }
+.klook-footer-logos .logo-text { font-weight: 800; color:#374151; }
+.klook-footer-copy { margin-top: 8px; color: var(--k-muted); }
+
 /* Login page */
 .klogin {
   max-width: 420px; margin: 40px auto; padding: 0 20px;
@@ -271,10 +304,13 @@
   .klook-right-grid { grid-template-columns: 1fr 1fr; grid-template-rows: none; }
   .klook-highlights, .klook-packages { grid-template-columns: 1fr; }
   .klook-price-card { position: static; }
+  .k-card-row, .k-vehicle-grid { grid-template-columns: repeat(2, 1fr); }
+  .klook-footer-columns { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 640px) {
   .klook-title { font-size: 28px; }
   .klook-header .bar { padding: 10px 12px; }
   .klook-breadcrumb, .klook-title-wrap, .klook-hero, .klook-highlights, .klook-offers, .klook-packages, .klook-expect { padding: 0 12px; }
+  .k-card-row, .k-vehicle-grid { grid-template-columns: 1fr; }
+  .klook-footer-columns { grid-template-columns: 1fr; }
 }
-
