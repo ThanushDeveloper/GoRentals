@@ -2,8 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import DefaultLayout from './layouts/DefaultLayout';
 import { AuthProvider } from './context/AuthContext';
 import Home from './pages/user/Home';
 import Vehicles from './pages/user/Vehicles';
@@ -26,35 +25,36 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Navbar />
+        {/* App routes */}
         <Routes>
+          {/* Klook-like pages render their own header */}
           <Route path="/" element={<Home />} />
-          <Route path="/vehicles" element={<Vehicles />} />
-          <Route path="/vehicles/:id" element={<VehicleDetails />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route element={<DefaultLayout /> }>
+            <Route path="/vehicles" element={<Vehicles />} />
+            <Route path="/vehicles/:id" element={<VehicleDetails />} />
+            <Route path="/register" element={<Register />} />
 
-          <Route element={<RequireAuth role="USER" />}> 
-            <Route path="/bookings" element={<BookingHistory />} />
-            <Route path="/payments" element={<Payments />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/reviews" element={<Reviews />} />
-          </Route>
+            <Route element={<RequireAuth role="USER" />}> 
+              <Route path="/bookings" element={<BookingHistory />} />
+              <Route path="/payments" element={<Payments />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/reviews" element={<Reviews />} />
+            </Route>
 
-          <Route element={<RequireAuth role="ADMIN" />}> 
-            <Route path="/admin" element={<Dashboard />} />
-            <Route path="/admin/vehicles" element={<ManageVehicles />} />
-            <Route path="/admin/bookings" element={<ManageBookings />} />
-            <Route path="/admin/users" element={<ManageUsers />} />
-            <Route path="/admin/payments" element={<PaymentsAdmin />} />
-            <Route path="/admin/reports" element={<Reports />} />
+            <Route element={<RequireAuth role="ADMIN" />}> 
+              <Route path="/admin" element={<Dashboard />} />
+              <Route path="/admin/vehicles" element={<ManageVehicles />} />
+              <Route path="/admin/bookings" element={<ManageBookings />} />
+              <Route path="/admin/users" element={<ManageUsers />} />
+              <Route path="/admin/payments" element={<PaymentsAdmin />} />
+              <Route path="/admin/reports" element={<Reports />} />
+            </Route>
           </Route>
         </Routes>
-        <Footer />
       </AuthProvider>
     </BrowserRouter>
   );
 }
 
 export default App;
-

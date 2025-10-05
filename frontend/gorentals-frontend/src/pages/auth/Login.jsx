@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import KlookHeader from '../../components/KlookHeader';
+import '../../styles/klook.css';
 
 export default function Login() {
   const { login, loading, error, isAdmin, isUser } = useAuth();
@@ -18,38 +20,39 @@ export default function Login() {
   };
 
   return (
-    <div className="container py-5 container-narrow">
-      <div className="row justify-content-center">
-        <div className="col-md-7 col-lg-5">
-          <div className="elevated-card p-4 auth-hero">
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <h3 className="mb-0">Welcome back</h3>
-              <button
-                type="button"
-                className="btn btn-sm btn-outline-secondary"
-                onClick={() => { setEmail('admin@gmail.com'); setPassword('admin@1234'); }}
-                title="Fill admin demo"
-              >
-                Admin demo
-              </button>
+    <div className="klook">
+      <KlookHeader />
+      <div className="klogin">
+        <div className="card">
+          <div className="title">Log in</div>
+          {error && (
+            <div style={{marginTop:12, color:'#b91c1c', background:'#fee2e2', border:'1px solid #fecaca', padding:'8px 12px', borderRadius:10}}>
+              {error}
             </div>
-            {error && <div className="alert alert-danger">{error}</div>}
-            <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
-              <div>
-                <label className="form-label">Email</label>
-                <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
-              </div>
-              <div>
-                <label className="form-label">Password</label>
-                <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
-              </div>
-              <button disabled={loading} className="btn btn-brand w-100" type="submit">
-                {loading ? 'Logging in...' : 'Login'}
-              </button>
-            </form>
-            <div className="mt-3 text-center">
-              <span>Don't have an account? </span>
-              <Link to="/register">Register</Link>
+          )}
+          <form onSubmit={handleSubmit}>
+            <div className="field">
+              <label>Email</label>
+              <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} required placeholder="you@example.com" />
+            </div>
+            <div className="field">
+              <label>Password</label>
+              <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} required placeholder="••••••••" />
+            </div>
+            <button className="klook-btn-orange cta" type="submit" disabled={loading}>
+              {loading ? 'Logging in…' : 'Log in'}
+            </button>
+          </form>
+          <div style={{marginTop:12, display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+            <button
+              type="button"
+              onClick={() => { setEmail('admin@gmail.com'); setPassword('admin@1234'); }}
+              style={{background:'#f3f4f6', border:'1px solid #e5e7eb', padding:'8px 10px', borderRadius:10}}
+            >
+              Fill admin demo
+            </button>
+            <div>
+              Don't have an account? <Link to="/register" style={{color:'#ff5a1f', fontWeight:700}}>Sign up</Link>
             </div>
           </div>
         </div>
@@ -57,6 +60,3 @@ export default function Login() {
     </div>
   );
 }
-
-
-
