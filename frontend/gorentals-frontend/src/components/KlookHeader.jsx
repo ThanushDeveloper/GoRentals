@@ -14,10 +14,10 @@ export default function KlookHeader() {
           <input placeholder="Search destinations or activities" />
         </div>
         <div className="nav-right">
-          <Link to="#" className="muted">INR ▾</Link>
+          {/* <Link to="#" className="muted">INR ▾</Link>
           <Link to="#" className="muted">Go to app</Link>
           <Link to="#" className="muted">Help</Link>
-          <Link to="#" className="muted d-none d-md-inline">Recently viewed</Link>
+          <Link to="#" className="muted d-none d-md-inline">Recently viewed</Link> */}
           <Link to="/register" className="muted d-none d-md-inline">Sign up</Link>
           <Link to="/login" className="klook-btn-orange">Log in</Link>
         </div>

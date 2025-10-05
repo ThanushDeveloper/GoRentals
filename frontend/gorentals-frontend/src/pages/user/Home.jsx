@@ -1,6 +1,11 @@
 import React from 'react';
 import KlookHeader from '../../components/KlookHeader';
 import '../../styles/klook.css';
+import homeimg1 from "../../assets/homeimg1.webp";
+import homeimg2 from "../../assets/homeimg2.webp";
+import homeimg3 from "../../assets/homeimg3.webp";
+import homeimg4 from "../../assets/homeimg4.webp";
+import homeimg5 from "../../assets/homeimg5.webp";
 
 export default function Home() {
   return (
@@ -9,47 +14,47 @@ export default function Home() {
 
       {/* Breadcrumb */}
       <div className="klook-breadcrumb">
-        <span>Klook Travel</span>
+        <span>GoRentals</span>
         <span className="sep">›</span>
-        <span>United States</span>
+        <span>India</span>
         <span className="sep">›</span>
-        <span>Miami</span>
+        <span>India</span>
         <span className="sep">›</span>
-        <span>Tours & experiences</span>
+        <span>Vehicle Rentals</span>
         <span className="sep">›</span>
-        <span>Outdoor & sports activities</span>
+        <span>Adventure Rides</span>
         <span className="sep">›</span>
-        <span>Scooter rentals</span>
+        <span>Bikes for Rent</span>
       </div>
 
       {/* Title + chips + meta */}
       <div className="klook-title-wrap">
         <div className="klook-title">Miami Beach Bike Rentals</div>
-        <div className="klook-chips">
+        {/* <div className="klook-chips">
           <span className="k-chip">English</span>
           <span className="k-chip">Meet at location</span>
           <span className="k-chip">2hr – 10hr Duration</span>
-        </div>
+        </div> */}
         <div className="klook-meta-row">
           <div className="klook-meta-left">
             <span>📍 850 Washington Avenue Miami Beach, FL 33139</span>
           </div>
-          <a className="klook-save" href="#">♡ Save to wishlist</a>
+          {/* <a className="klook-save" href="#">♡ Save to wishlist</a> */}
         </div>
       </div>
 
       {/* Gallery + price */}
       <section className="klook-hero">
         <div className="klook-grid">
-          <img className="klook-big-img" alt="Gallery" src="https://images.unsplash.com/photo-1519340333755-54d69ba1be2b?q=80&w=1600&auto=format&fit=crop" />
+          <img className="klook-big-img" alt="Gallery" src={homeimg1} />
           <div className="klook-right-grid">
             <div className="klook-right-top">
-              <img className="klook-thumb" alt="t1" src="https://images.unsplash.com/photo-1529429612779-c8e40ef2f36e?q=80&w=800&auto=format&fit=crop" />
-              <img className="klook-thumb" alt="t2" src="https://images.unsplash.com/photo-1520975922171-8a8d1d4a19a8?q=80&w=800&auto=format&fit=crop" />
+              <img className="klook-thumb" alt="t1" src={homeimg2} />
+              <img className="klook-thumb" alt="t2" src={homeimg3} />
             </div>
             <div className="klook-right-bottom">
-              <img className="klook-thumb" alt="t3" src="https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?q=80&w=800&auto=format&fit=crop" />
-              <img className="klook-thumb" alt="t4" src="https://images.unsplash.com/photo-1516383607781-913a19294fd1?q=80&w=800&auto=format&fit=crop" />
+              <img className="klook-thumb" alt="t3" src={homeimg4} />
+              <img className="klook-thumb" alt="t4" src={homeimg5} />
             </div>
           </div>
         </div>
@@ -59,9 +64,12 @@ export default function Home() {
       <section className="klook-highlights">
         <div className="klook-bullets">
           <ul>
-            <li>Explore Ocean Drive, one of the most famous strips of South Beach Miami</li>
-            <li>Ride the bike path all the way down to the South Pointe Pier</li>
-            <li>Snap pictures with beautiful Art Deco buildings from the 30s</li>
+            <li><b>Comfortable Rides</b> – Smooth gear shifts and easy-to-use frames for everyone.</li>
+            <li><b>Flexible & Fun</b> – Ride at your own pace, whenever you want.</li>
+            <li><b>Capture the Moments</b> – Enjoy the ride and create memories along the way.</li>
+            
+
+
           </ul>
           <a className="klook-see-more" href="#">See more →</a>
         </div>
@@ -134,12 +142,12 @@ export default function Home() {
             <div className="title">Package details</div>
             <div className="k-chip-green" style={{ marginTop: 8 }}>Book now for today</div>
             <ul className="k-list">
-              <li>✔️ Tax</li>
-              <li>✔️ Helmets</li>
-              <li>✔️ Baskets/Bike Bags</li>
-              <li>✔️ Locks</li>
+              <li>✔️ Tax included</li>
+              <li>✔️ Helmets provided</li>
+              <li>✔️ Baskets / Bike Bags</li>
+              <li>✔️ Locks included</li>
               <li>✔️ Illustrated Maps</li>
-              <li>✖️ Hotel pick up and drop off</li>
+              <li>✖️ Hotel pick-up & drop-off</li>
               <li>✖️ Transport</li>
               <li>✖️ Insurance</li>
             </ul>
@@ -151,8 +159,7 @@ export default function Home() {
       <section className="klook-expect">
         <div className="k-section-title">What to expect</div>
         <p className="k-expect-text">
-          Biking is the best way to explore Miami Beach! Our Cannondale bikes are hybrids between comfort and performance with gear shifts, available in step-through and straight frame.
-          In this bike-friendly city, you can feel the full ambiance of Ocean Drive and the Espanola Way district.
+          Experience the joy of biking with our premium Cannondale rentals. Designed for smooth gear shifts and available in both step-through and standard frames, our bikes make every ride comfortable and effortless. Rent your bike today and enjoy freedom, flexibility, and fun on every journey!
         </p>
       </section>
     </div>
