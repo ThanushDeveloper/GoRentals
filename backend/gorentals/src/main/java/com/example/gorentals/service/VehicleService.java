@@ -19,11 +19,11 @@ public class VehicleService {
 
     public List<Vehicle> getAll(String type, BigDecimal minPrice, BigDecimal maxPrice, Integer seats, String transmission) {
         Specification<Vehicle> spec = Specification.where(null);
-        if (type != null) spec = spec.and((root, q, cb) -> cb.equal(root.get("type"), type));
-        if (minPrice != null) spec = spec.and((root, q, cb) -> cb.greaterThanOrEqualTo(root.get("pricePerDay"), minPrice));
-        if (maxPrice != null) spec = spec.and((root, q, cb) -> cb.lessThanOrEqualTo(root.get("pricePerDay"), maxPrice));
-        if (seats != null) spec = spec.and((root, q, cb) -> cb.equal(root.get("seats"), seats));
-        if (transmission != null) spec = spec.and((root, q, cb) -> cb.equal(root.get("transmission"), transmission));
+        if (type != null) spec = Specification.where(spec).and((root, q, cb) -> cb.equal(root.get("type"), type));
+        if (minPrice != null) spec = Specification.where(spec).and((root, q, cb) -> cb.greaterThanOrEqualTo(root.get("pricePerDay"), minPrice));
+        if (maxPrice != null) spec = Specification.where(spec).and((root, q, cb) -> cb.lessThanOrEqualTo(root.get("pricePerDay"), maxPrice));
+        if (seats != null) spec = Specification.where(spec).and((root, q, cb) -> cb.equal(root.get("seats"), seats));
+        if (transmission != null) spec = Specification.where(spec).and((root, q, cb) -> cb.equal(root.get("transmission"), transmission));
         return spec == null ? vehicleRepository.findAll() : vehicleRepository.findAll(spec);
     }
 

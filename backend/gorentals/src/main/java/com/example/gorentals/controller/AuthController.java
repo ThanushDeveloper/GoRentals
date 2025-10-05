@@ -87,6 +87,12 @@ public class AuthController {
         var updated = authService.resetPassword(request.getToken(), userService.encodePassword(request.getNewPassword()));
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestBody AuthDtos.RefreshRequest request) {
+        authService.revokeRefreshToken(request.getRefreshToken());
+        return ResponseEntity.ok().build();
+    }
 }
 
 
